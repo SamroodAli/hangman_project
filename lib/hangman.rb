@@ -65,4 +65,13 @@ class Hangman
     self.try_guess(user_input)
   end
 
+  def win?
+    if @guess_word.join == @secret_word
+      puts "WIN"
+      return true
+    else
+      return false
+    end
+  end
+
 end
