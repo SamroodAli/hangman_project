@@ -1,3 +1,4 @@
+require "byebug"
 class Hangman
   DICTIONARY = ["cat", "dog", "bootcamp", "pizza"]
 
@@ -26,5 +27,19 @@ class Hangman
 
   def already_attempted?(char)
     @attempted_chars.include?(char)
+  end
+
+  def get_matching_indices(string)
+    arr = []
+    @secret_word.each_char.with_index do |char, i|
+      arr << i if char == string
+    end
+    arr
+  end
+
+  def fill_indices(char,arr)
+    arr.each do |el|
+     @guess_word[el] = char
+    end
   end
 end
