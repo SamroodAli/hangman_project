@@ -42,4 +42,20 @@ class Hangman
      @guess_word[el] = char
     end
   end
+
+  def try_guess(char)
+    if self.already_attempted?(char)
+      puts "That has already been attempted"
+      return false
+    else
+      @attempted_chars << char
+      if !@secret_word.include?(char)
+        @remaining_incorrect_guesses -= 1
+      else
+        match_idx=self.get_matching_indices(char)
+        self.fill_indices(char, match_idx)
+      end
+      return true
+    end
+  end
 end
